@@ -21,7 +21,7 @@ This repository contains a robust, modular, and scalable machine learning pipeli
 ## Project Structure
 
 ```
-.venv/
+
 api/
 ├── model/
 │   ├── __init__.py
