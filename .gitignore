@@ -1,0 +1,67 @@
+# Python-specific ignores
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+
+# Environment files
+.env
+.env.dev
+.env.prod
+*.env.local
+
+# Virtual environments
+venv/
+env/
+.virtualenv/
+.venv/
+
+# Data directories (tracked by DVC, not Git)
+data/raw/*
+data/processed/*
+data/external/*
+!data/.gitkeep  # Keep empty directories if needed
+
+# Model files (tracked by DVC, not Git)
+models/*
+!models/.gitkeep
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Jupyter Notebook checkpoints
+notebooks/.ipynb_checkpoints/
+
+# IDE-specific files
+.vscode/
+.idea/
+*.sublime-*
+
+# Dependency management
+pip-wheel-metadata/
+*.lock  # Unless you want to commit dependency locks
+
+# Docker-related ignores
+*.dockerignore
+Dockerfile.local
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Testing and coverage
+.coverage
+coverage.xml
+htmlcov/
+pytest_cache/
+
+# DVC cache (if using DVC)
+.dvc/cache/
+.dvc/tmp/
