@@ -21,46 +21,73 @@ This repository contains a robust, modular, and scalable machine learning pipeli
 ## Project Structure
 
 ```
+ml_project/
+│
+├── data_pipeline/                 # Raw data ingestion & preprocessing
+│   ├── __init__.py
+│   ├── ingest.py                  # Load raw data from source
+│   ├── preprocess.py              # Clean, transform, validate
+│   ├── feature_engineering.py     # Feature creation, encoding, scaling
+│   └── config.yaml                # Data-related configs
+│
+├── training_pipeline/            # Model training, evaluation, and tuning
+│   ├── __init__.py
+│   ├── train.py                   # Train and save model
+│   ├── evaluate.py                # Evaluate trained model
+│   ├── tune.py                    # Hyperparameter tuning (e.g., Optuna/GridSearch)
+│   └── config.yaml
+│
+├── model_registry/               # Store trained models
+│   ├── model_v1.pkl
+│   └── model_metadata.json
+│
+├── inference_pipeline/           # Prediction pipelines
+│   ├── batch_inference.py        # Predict on entire dataset
+│   ├── api_server.py             # Real-time predictions (FastAPI/Flask)
+│   ├── request_schema.py         # Input validation
+│   └── config.yaml
+│
+├── monitoring/                   # Model and data monitoring
+│   ├── monitor_drift.py
+│   ├── log_metrics.py
+│   └── dashboards/               # For Grafana/Prometheus or Streamlit dashboards
+│
+├── orchestrator/                 # Orchestrates all pipelines (Airflow/Prefect/etc.)
+│   ├── dag.py                    # Orchestration script
+│   └── run_all.py                # Manual script for full run
+│
+├── shared/                       # Reusable modules/utilities
+│   ├── __init__.py
+│   ├── logger.py
+│   ├── utils.py
+│   ├── constants.py
+│   └── file_io.py
+│
+├── tests/                        # Unit and integration tests
+│   ├── test_preprocess.py
+│   ├── test_train.py
+│   └── test_inference.py
+│
+├── configs/                      # Central configuration management
+│   ├── global_config.yaml
+│   └── secrets.yaml              # API keys, DB creds (handled securely)
+│
+├── requirements.txt              # Python dependencies
+├── Dockerfile                    # Containerization setup
+├── docker-compose.yml            # For orchestration (if needed)
+├── README.md
+└── .env                          # Environment variables
 
-api/
-├── model/
-│   ├── __init__.py
-│   └── model.py
-├── routes/
-│   ├── health.py
-│   └── predict.py
-├── __init__.py
-├── main.py
-└── utils.py
-data/
-docs/
-models/
-notebooks/
-src/
-├── __init__.py
-├── config.py
-├── data_ingestion.py
-├── evaluation.py
-├── logging.py
-├── predict.py
-├── preprocessing.py
-├── training.py
-└── utils.py
-tests/
-├── integration/
-│   └── test_pipeline.py
-├── unit/
-│   ├── __init__.py
-│   └── test_data_ingestion.py
-├── __init__.py
-.env.dev
-.env.prod
-.gitignore
-docker-compose.yml
-Dockerfile
-dvc.yml
-main.py
-README.md
+[data_pipeline] 
+    ↓
+[training_pipeline] 
+    ↓
+[model_registry] 
+    ↓
+[inference_pipeline (batch or real-time)] 
+    ↓
+[monitoring]
+
 ```
 
 ## Key Features
@@ -145,61 +172,3 @@ Contributions are welcome! Feel free to submit issues and pull requests.
 This project is licensed under the MIT License.
 
 
-```
-ml_project/
-│
-├── data_pipeline/                 # Raw data ingestion & preprocessing
-│   ├── __init__.py
-│   ├── ingest.py                  # Load raw data from source
-│   ├── preprocess.py              # Clean, transform, validate
-│   ├── feature_engineering.py     # Feature creation, encoding, scaling
-│   └── config.yaml                # Data-related configs
-│
-├── training_pipeline/            # Model training, evaluation, and tuning
-│   ├── __init__.py
-│   ├── train.py                   # Train and save model
-│   ├── evaluate.py                # Evaluate trained model
-│   ├── tune.py                    # Hyperparameter tuning (e.g., Optuna/GridSearch)
-│   └── config.yaml
-│
-├── model_registry/               # Store trained models
-│   ├── model_v1.pkl
-│   └── model_metadata.json
-│
-├── inference_pipeline/           # Prediction pipelines
-│   ├── batch_inference.py        # Predict on entire dataset
-│   ├── api_server.py             # Real-time predictions (FastAPI/Flask)
-│   ├── request_schema.py         # Input validation
-│   └── config.yaml
-│
-├── monitoring/                   # Model and data monitoring
-│   ├── monitor_drift.py
-│   ├── log_metrics.py
-│   └── dashboards/               # For Grafana/Prometheus or Streamlit dashboards
-│
-├── orchestrator/                 # Orchestrates all pipelines (Airflow/Prefect/etc.)
-│   ├── dag.py                    # Orchestration script
-│   └── run_all.py                # Manual script for full run
-│
-├── shared/                       # Reusable modules/utilities
-│   ├── __init__.py
-│   ├── logger.py
-│   ├── utils.py
-│   ├── constants.py
-│   └── file_io.py
-│
-├── tests/                        # Unit and integration tests
-│   ├── test_preprocess.py
-│   ├── test_train.py
-│   └── test_inference.py
-│
-├── configs/                      # Central configuration management
-│   ├── global_config.yaml
-│   └── secrets.yaml              # API keys, DB creds (handled securely)
-│
-├── requirements.txt              # Python dependencies
-├── Dockerfile                    # Containerization setup
-├── docker-compose.yml            # For orchestration (if needed)
-├── README.md
-└── .env                          # Environment variables
-```
