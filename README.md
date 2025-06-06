@@ -145,7 +145,7 @@ Contributions are welcome! Feel free to submit issues and pull requests.
 This project is licensed under the MIT License.
 
 
-
+```
 ml_project/
 │
 ├── data_pipeline/                 # Raw data ingestion & preprocessing
@@ -202,4 +202,4 @@ ml_project/
 ├── docker-compose.yml            # For orchestration (if needed)
 ├── README.md
 └── .env                          # Environment variables
-
+```
